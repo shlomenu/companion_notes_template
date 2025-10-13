@@ -5,7 +5,7 @@
 
 # --- Configuration ---
 # Relative path to the built PDF (from repo root)
-PDF_NAME="notes.pdf"
+PDF_NAME="main.pdf"
 
 # Absolute path to Zotero item directory
 ZOTERO_BASE="$HOME/Zotero/storage"
@@ -15,7 +15,7 @@ ZOTERO_DIR="$ZOTERO_BASE/$ZOTERO_KEY"
 # --- Script logic ---
 REPO_DIR="$(git rev-parse --show-toplevel)"
 SOURCE_PDF="$REPO_DIR/$PDF_NAME"
-DEST_PDF="$ZOTERO_DIR/$PDF_NAME"
+DEST_PDF="$ZOTERO_DIR/Notes.pdf"
 
 # Check that the source exists
 if [[ ! -f "$SOURCE_PDF" ]]; then
