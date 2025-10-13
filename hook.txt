@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+#
+# post-commit hook — copy the latest compiled notes.pdf into Zotero storage
+# Make sure this file is executable: chmod +x .git/hooks/post-commit
+
+# --- Configuration ---
+# Relative path to the built PDF (from repo root)
+PDF_NAME="notes.pdf"
+
+# Absolute path to Zotero item directory
+ZOTERO_BASE="$HOME/Zotero/storage"
+ZOTERO_KEY=""
+ZOTERO_DIR="$ZOTERO_BASE/$ZOTERO_KEY"
+
+# --- Script logic ---
+REPO_DIR="$(git rev-parse --show-toplevel)"
+SOURCE_PDF="$REPO_DIR/$PDF_NAME"
+DEST_PDF="$ZOTERO_DIR/$PDF_NAME"
+
+# Check that the source exists
+if [[ ! -f "$SOURCE_PDF" ]]; then
+    echo "❌ post-commit: $SOURCE_PDF not found. Did you build the PDF?"
+    exit 1
+fi
+
+# Ensure the Zotero directory exists
+if [[ ! -d "$ZOTERO_DIR" ]]; then
+    echo "❌ post-commit: Zotero directory $ZOTERO_DIR not found."
+    exit 1
+fi
+
+# Copy and confirm
+cp -f "$SOURCE_PDF" "$DEST_PDF" && \
+echo "✅ post-commit: Updated Zotero copy at $DEST_PDF"
