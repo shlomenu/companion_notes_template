@@ -11,6 +11,20 @@
 \usepackage{amsthm}
 \usepackage{amssymb}
 
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\qedsymbol}{$\blacktriangle$}
+
+
 \newcommand{\underemp}[1]{\underline{\phantom{#1}}}
 
 \title{Companion Notes}
