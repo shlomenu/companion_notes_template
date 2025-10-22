@@ -10,6 +10,8 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{cmll}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
@@ -26,6 +28,16 @@
 
 
 \newcommand{\underemp}[1]{\underline{\phantom{#1}}}
+\newcommand{\rhul}[3]{#1^{#2}_{#3}}
+\newcommand{\prim}[2]{\rhul{#1}{\prime}{#2}}
+\newcommand{\dbprim}[2]{\rhul{#1}{\prime\prime}{#2}}
+\newcommand{\surr}[3]{{#1}{#2}{#3}}
+\newcommand{\bars}[1]{\surr{|}{#1}{|}}
+\newcommand{\set}[1]{\surr{\{}{#1}{\}}}
+\newcommand{\asp}[1]{\surr{\,}{#1}{\,}}
+\newcommand{\vsep}[0]{\surr{\,}{|}{\,}}
+\newcommand{\ctub}[3]{\underset{#1}{\overset{#2}{#3}}}
+\newcommand{\defeql}[2]{\ctub{\mathrm{def}}{=}{}}
 
 \title{Companion Notes}
 \author{Eli Whitehouse}
