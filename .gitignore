@@ -14,4 +14,5 @@
 *.ist
 *.bcf
 *.out
-.vscode
+.vscode/
+*.bbl-SAVE-ERROR
