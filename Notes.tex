@@ -30,12 +30,13 @@
 
 
 \newcommand{\underemp}[1]{\underline{\phantom{#1}}}
-\newcommand{\rhul}[3]{#1^{#2}_{#3}}
+\newcommand{\rhul}[3]{{#1}^{#2}_{#3}}
 \newcommand{\prim}[2]{\rhul{#1}{\prime}{#2}}
 \newcommand{\dbprim}[2]{\rhul{#1}{\prime\prime}{#2}}
-\newcommand{\surr}[3]{{#1}{#2}{#3}}
+\newcommand{\surr}[3]{{{#1}}{{#2}}{{#3}}}
 \newcommand{\bars}[1]{\surr{|}{#1}{|}}
 \newcommand{\set}[1]{\surr{\{}{#1}{\}}}
+\newcommand{\ang}[1]{\surr{\langle}{#1}{\rangle}}
 \newcommand{\asp}[1]{\surr{\,}{#1}{\,}}
 \newcommand{\vsep}[0]{\surr{\,}{|}{\,}}
 \newcommand{\ctub}[3]{\underset{#1}{\overset{#2}{#3}}}
@@ -50,6 +51,9 @@
 \newcommand{\catto}[1]{\underset{\mb{#1}}{\rightarrowtail}}
 \newcommand{\short}[1]{\!\;#1\;\!}
 \newcommand{\shimpl}[0]{\short{\implies}}
+\newcommand{\pb}[0]{\mkpar{6pt}}
+\newcommand{\pbb}[0]{\mkpar{12pt}}
+\newcommand{\quantctr}[7]{\begin{flalign*}\mspace{#1mu}{#6}&\mspace{#2mu}{#4}\mspace{#3mu}{#7}\mspace{#3mu}{#5}&\end{flalign*}}
 
 \title{Companion Notes}
 \author{Eli Whitehouse}
