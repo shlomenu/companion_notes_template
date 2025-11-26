@@ -37,13 +37,22 @@
 \newcommand{\prim}[2]{\rhul{#1}{\prime}{#2}}
 \newcommand{\dbprim}[2]{\rhul{#1}{\prime\prime}{#2}}
 \newcommand{\surr}[3]{{{#1}}{{#2}}{{#3}}}
+\newcommand{\surrsz}[4]{\surr{#1#2}{#3}{#1#4}}
 \newcommand{\bars}[1]{\surr{|}{#1}{|}}
+\newcommand{\barssz}[2]{\surrsz{#1}{|}{#2}{|}}
 \newcommand{\set}[1]{\surr{\{}{#1}{\}}}
+\newcommand{\setsz}[2]{\surrsz{#1}{\{}{#2}{\}}}
 \newcommand{\ang}[1]{\surr{\langle}{#1}{\rangle}}
+\newcommand{\angsz}[2]{\surrsz{#1}{\langle}{#2}{\rangle}}
+\newcommand{\tup}[1]{\surr{(}{#1}{)}}
+\newcommand{\tupsz}[2]{\surrsz{#1}{(}{#2}{)}}
+\newcommand{\bkt}[1]{\surr{[}{#1}{]}}
+\newcommand{\bktsz}[2]{\surrsz{#1}{[}{#2}{]}}
 \newcommand{\asp}[1]{\surr{\,}{#1}{\,}}
-\newcommand{\vsep}{\surr{\,}{|}{\,}}
+\newcommand{\msp}[2]{\surr{\mspace{#1mu}}{#2}{\mspace{#1mu}}}
+\newcommand{\suchthat}[1]{\surr{\,}{#1|}{\,}}
 \newcommand{\ctub}[3]{\underset{#1}{\overset{#2}{#3}}}
-\newcommand{\defeql}{\ctub{}{\mathrm{def}}{=}}
+\newcommand{\defeql}[0]{\ctub{}{\mathrm{def}}{=}}
 \newcommand{\tb}[1]{\textbf{#1}}
 \newcommand{\ti}[1]{\textit{#1}}
 \newcommand{\mb}[1]{\mathbf{#1}}
@@ -52,22 +61,24 @@
 \newcommand{\mbuf}[2]{\surr{\mspace{#1mu}}{\text{#2}}{\mspace{#1mu}}}
 \newcommand{\mkpar}[1]{\par\vspace*{#1}\everypar{{\setbox0=\lastbox}\noindent}}
 \newcommand{\catto}[1]{\underset{\mb{#1}}{\rightarrowtail}}
-\makeatletter
-\newcommand{\catty}{\mathrel{\mathpalette\charcolon@{}}}
-\newcommand{\charcolon@}[2]{%
-  \raisebox{0.0ex}{$\scalebox{1.15}{$\vcentcolon$}$}%
-  \mspace{-1mu}%
-  \raisebox{0.372ex}{$\scalebox{.5}{$\blacktriangleright$}$}%
-}
-\makeatother
-\newcommand{\seq}{\asp{\cc{;}}}
 \newcommand{\short}[1]{\!\;#1\;\!}
-\newcommand{\shimpl}{\short{\implies}}
-\newcommand{\pb}{\mkpar{6pt}}
-\newcommand{\pbb}{\mkpar{12pt}}
-\newcommand{\quantctr}[7]{\begin{flalign*}\mspace{#1mu}{#6}&\mspace{#2mu}{#4}\mspace{#3mu}{#7}\mspace{#3mu}{#5}&\end{flalign*}}
+\newcommand{\shimpl}[0]{\short{\implies}}
+\newcommand{\pb}[0]{\mkpar{6pt}}
+\newcommand{\pbb}[0]{\mkpar{12pt}}
+\newcommand{\quantctr}[7]{
+  \begin{flalign*}\mspace{#1mu}{#6}&\mspace{#2mu}\bktsz{#3}{\msp{#4}{#7}}&#5
+\end{flalign*}}
+\newcommand{\fun}[2]{#1\tup{#2}}
+\newcommand{\funsz}[3]{#1\tupsz{#2}{#3}}
+\makeatletter
+\let\forall@mathchar \forall
+\DeclareMathOperator*\varforall{\mathchoice{\scalerel*{\forall@mathchar}{\sum}}{\forall@mathchar}{\forall@mathchar}{\forall@mathchar}}
+\makeatother
+\newcommand{\ruleref}[1]{{\small\textsc{#1}}}
+
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\pos}{Pos}
 
 
 \title{Companion Notes}
