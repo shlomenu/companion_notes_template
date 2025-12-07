@@ -1,16 +1,19 @@
 \documentclass{article}
 \usepackage{url}
 \usepackage{geometry}[margin=1in,.75in]
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage[cal=dutchcal]{mathalfa}
+
 \usepackage{hyperref}
-\usepackage{parskip}
 \usepackage[backend=biber,style=ieee]{biblatex}
 \renewcommand{\refname}{References}
 \addbibresource{references.bib}
 \usepackage{tikz}
-\usepackage{amsmath}
+
+\usepackage{amsopn}
+\usepackage{scalerel}
 \usepackage{amsthm}
-\usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{cmll}
 \usepackage{mathpartir}
@@ -31,7 +34,6 @@
 
 \renewcommand{\qedsymbol}{$\blacktriangle$}
 
-
 \newcommand{\underemp}[1]{\underline{\phantom{#1}}}
 \newcommand{\rhul}[3]{{#1}^{#2}_{#3}}
 \newcommand{\prim}[2]{\rhul{#1}{\prime}{#2}}
@@ -48,6 +50,16 @@
 \newcommand{\tupsz}[2]{\surrsz{#1}{(}{#2}{)}}
 \newcommand{\bkt}[1]{\surr{[}{#1}{]}}
 \newcommand{\bktsz}[2]{\surrsz{#1}{[}{#2}{]}}
+\newcommand{\dbang}[1]{\surr{\lAngle}{#1}{\rAngle}}
+\newcommand{\dbangsz}[2]{\surrsz{#1}{\lAngle}{#2}{\rAngle}}
+\newcommand{\dbkt}[1]{\surr{\lBrack}{#1}{\rBrack}}
+\newcommand{\dbktsz}[2]{\surrsz{#1}{\lBrack}{#2}{\rBrack}}
+\newcommand{\dtup}[1]{\surr{\lParen}{#1}{\rParen}}
+\newcommand{\dtupsz}[2]{\surrsz{#1}{\lParen}{#2}{\rParen}}
+\newcommand{\grp}[1]{\surr{\lgroup}{#1}{\rgroup}}
+\newcommand{\grpsz}[2]{\surrsz{#1}{\lgroup}{#2}{\rgroup}}
+\newcommand{\baw}[1]{\surr{\lbrbrak}{#1}{\rbrbrak}}
+\newcommand{\bawsz}[2]{\surrsz{#1}{\lbrbrak}{#2}{\rbrbrak}}
 \newcommand{\asp}[1]{\surr{\,}{#1}{\,}}
 \newcommand{\msp}[2]{\surr{\mspace{#1mu}}{#2}{\mspace{#1mu}}}
 \newcommand{\suchthat}[1]{\surr{\,}{#1|}{\,}}
@@ -56,6 +68,7 @@
 \newcommand{\tb}[1]{\textbf{#1}}
 \newcommand{\ti}[1]{\textit{#1}}
 \newcommand{\mb}[1]{\mathbf{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
 \newcommand{\cc}[1]{\texttt{#1}}
 \newcommand{\inv}[2]{\rhul{#1}{-1}{#2}}
 \newcommand{\mbuf}[2]{\surr{\mspace{#1mu}}{\text{#2}}{\mspace{#1mu}}}
@@ -66,7 +79,7 @@
 \newcommand{\pb}[0]{\mkpar{6pt}}
 \newcommand{\pbb}[0]{\mkpar{12pt}}
 \newcommand{\quantctr}[7]{
-  \begin{flalign*}\mspace{#1mu}{#6}&\mspace{#2mu}\bktsz{#3}{\msp{#4}{#7}}&#5
+  \begin{flalign*}\mspace{#1mu}{#6}&\mspace{#2mu}\bktsz{#3}{\msp{#4}{#7}}#5&
 \end{flalign*}}
 \newcommand{\fun}[2]{#1\tup{#2}}
 \newcommand{\funsz}[3]{#1\tupsz{#2}{#3}}
@@ -75,11 +88,40 @@
 \DeclareMathOperator*\varforall{\mathchoice{\scalerel*{\forall@mathchar}{\sum}}{\forall@mathchar}{\forall@mathchar}{\forall@mathchar}}
 \makeatother
 \newcommand{\ruleref}[1]{{\small\textsc{#1}}}
+\newcommand{\pow}{\mc{Pow}}
+\newcommand{\shk}[2]{\scalebox{#1}{$#2$}}
 
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\cod}{cod}
 \DeclareMathOperator{\pos}{Pos}
 
+\makeatletter
+\DeclareFontEncoding{LS1}{}{}
+\DeclareFontEncoding{LS2}{}{\noaccents@}
+\DeclareFontSubstitution{LS1}{stix2}{m}{n}
+\DeclareFontSubstitution{LS2}{stix2}{m}{n}
+\DeclareSymbolFont{stixdelims}  {LS2}{stix2ex}   {m} {n}
+\DeclareSymbolFont{stixops}     {LS1}{stix2}     {m} {n}
+\SetSymbolFont{stixdelims}{bold}{LS2}{stix2ex}   {b} {n}
+\SetSymbolFont{stixops}   {bold}{LS1}{stix2}     {b} {n}
+
+\DeclareMathDelimiter{\lAngle}    {\mathopen} {stixdelims}{"EC}{stixdelims}{"12}
+\DeclareMathDelimiter{\rAngle}    {\mathclose}{stixdelims}{"ED}{stixdelims}{"13}
+\DeclareMathDelimiter{\lbrbrak}   {\mathopen} {stixdelims}{"EE}{stixdelims}{"14}
+\DeclareMathDelimiter{\rbrbrak}   {\mathclose}{stixdelims}{"EF}{stixdelims}{"15}
+\DeclareMathDelimiter{\lParen}    {\mathopen} {stixdelims}{"DE}{stixdelims}{"02}
+\DeclareMathDelimiter{\rParen}    {\mathclose}{stixdelims}{"DF}{stixdelims}{"03}
+\DeclareMathDelimiter{\lBrack}    {\mathopen} {stixdelims}{"E0}{stixdelims}{"06}
+\DeclareMathDelimiter{\rBrack}    {\mathclose}{stixdelims}{"E1}{stixdelims}{"07}
+\DeclareMathDelimiter{\lgroup}    {\mathopen} {stixdelims}{"DC}{stixdelims}{"6A}
+\DeclareMathDelimiter{\rgroup}    {\mathclose}{stixdelims}{"DD}{stixdelims}{"6B}
+\DeclareMathSymbol{\parallel}     {\mathrel}  {stixops}   {"DF}
+\makeatother
+
+\makeatletter
+\let\parallel@mathchar \parallel
+\DeclareMathOperator*\varparallel{\mathchoice{\scalerel*{\parallel@mathchar}{\sum}}{\parallel@mathchar}{\parallel@mathchar}{\parallel@mathchar}}
+\makeatother
 
 \title{Companion Notes}
 \author{Eli Whitehouse}
