@@ -8,7 +8,7 @@
 \usepackage{hyperref}
 \usepackage[backend=biber,style=ieee]{biblatex}
 \renewcommand{\refname}{References}
-\addbibresource{references.bib}
+\bibliography{references}
 \usepackage{tikz}
 
 \usepackage{amsopn}
@@ -64,7 +64,7 @@
 \newcommand{\msp}[2]{\surr{\mspace{#1mu}}{#2}{\mspace{#1mu}}}
 \newcommand{\suchthat}[1]{\surr{\,}{#1|}{\,}}
 \newcommand{\ctub}[3]{\underset{#1}{\overset{#2}{#3}}}
-\newcommand{\defeql}[0]{\ctub{}{\mathrm{def}}{=}}
+\newcommand{\defeql}{\ctub{}{\mathrm{def}}{=}}
 \newcommand{\tb}[1]{\textbf{#1}}
 \newcommand{\ti}[1]{\textit{#1}}
 \newcommand{\mb}[1]{\mathbf{#1}}
@@ -74,22 +74,27 @@
 \newcommand{\mbuf}[2]{\surr{\mspace{#1mu}}{\text{#2}}{\mspace{#1mu}}}
 \newcommand{\mkpar}[1]{\par\vspace*{#1}\everypar{{\setbox0=\lastbox}\noindent}}
 \newcommand{\catto}[1]{\underset{\mb{#1}}{\rightarrowtail}}
-\newcommand{\short}[1]{\!\;#1\;\!}
-\newcommand{\shimpl}[0]{\short{\implies}}
-\newcommand{\pb}[0]{\mkpar{6pt}}
-\newcommand{\pbb}[0]{\mkpar{12pt}}
+\newcommand{\pb}{\mkpar{6pt}}
+\newcommand{\ppb}{\mkpar{9pt}}
+\newcommand{\pbb}{\mkpar{12pt}}
 \newcommand{\quantctr}[7]{
-  \begin{flalign*}\mspace{#1mu}{#6}&\mspace{#2mu}\bktsz{#3}{\msp{#4}{#7}}#5&
+	\begin{flalign*}\mspace{#1mu}{#6}&\mspace{#2mu}\bktsz{#3}{\msp{#4}{#7}}#5&
 \end{flalign*}}
-\newcommand{\fun}[2]{#1\tup{#2}}
-\newcommand{\funsz}[3]{#1\tupsz{#2}{#3}}
+\newcommand{\ttop}[1]{\operatorname{\mathtt{#1}}}
+\newcommand{\prx}[2]{#1\tup{#2}}
+\newcommand{\prxsz}[3]{#2\tupsz{#1}{#3}}
+\newcommand{\inx}[3]{#2 #1 #3}
+\newcommand{\inxsz}[4]{\tupsz{#1}{#3} #2 \tupsz{#1}{#4}}
 \makeatletter
 \let\forall@mathchar \forall
 \DeclareMathOperator*\varforall{\mathchoice{\scalerel*{\forall@mathchar}{\sum}}{\forall@mathchar}{\forall@mathchar}{\forall@mathchar}}
 \makeatother
 \newcommand{\ruleref}[1]{{\small\textsc{#1}}}
 \newcommand{\pow}{\mc{Pow}}
-\newcommand{\shk}[2]{\scalebox{#1}{$#2$}}
+\newcommand{\shk}[2]{\text{\scalebox{#1}{$#2$}}}
+\newcommand{\vsh}[2]{\text{\raisebox{#1}{$#2$}}}
+\newcommand{\rta}[2]{\text{\rotatebox{#1}{$#2$}}}
+\newcommand{\place}[4]{\shk{#1}{\vsh{#2mm}{\rta{#3}{#4}}}}
 
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\cod}{cod}
@@ -100,23 +105,34 @@
 \DeclareFontEncoding{LS2}{}{\noaccents@}
 \DeclareFontSubstitution{LS1}{stix2}{m}{n}
 \DeclareFontSubstitution{LS2}{stix2}{m}{n}
-\DeclareSymbolFont{stixdelims}  {LS2}{stix2ex}   {m} {n}
-\DeclareSymbolFont{stixops}     {LS1}{stix2}     {m} {n}
-\SetSymbolFont{stixdelims}{bold}{LS2}{stix2ex}   {b} {n}
-\SetSymbolFont{stixops}   {bold}{LS1}{stix2}     {b} {n}
+\DeclareSymbolFont{stixdelims}   {LS2}{stix2ex}   {m} {n}
+\DeclareSymbolFont{stixops}      {LS1}{stix2}     {m} {n}
+\DeclareSymbolFont{stixarrows1}  {LS1}{stixsf}{m} {n}
+\DeclareSymbolFont{stixarrows3}  {LS2}{stixtt}    {m} {n}
+\SetSymbolFont{stixdelims} {bold}{LS2}{stix2ex}   {b} {n}
+\SetSymbolFont{stixops}    {bold}{LS1}{stix2}     {b} {n}
+\SetSymbolFont{stixarrows1}{bold}{LS1}{stixsf}    {b} {n}
+\SetSymbolFont{stixarrows3}{bold}{LS2}{stixtt}    {b} {n}
 
-\DeclareMathDelimiter{\lAngle}    {\mathopen} {stixdelims}{"EC}{stixdelims}{"12}
-\DeclareMathDelimiter{\rAngle}    {\mathclose}{stixdelims}{"ED}{stixdelims}{"13}
-\DeclareMathDelimiter{\lbrbrak}   {\mathopen} {stixdelims}{"EE}{stixdelims}{"14}
-\DeclareMathDelimiter{\rbrbrak}   {\mathclose}{stixdelims}{"EF}{stixdelims}{"15}
-\DeclareMathDelimiter{\lParen}    {\mathopen} {stixdelims}{"DE}{stixdelims}{"02}
-\DeclareMathDelimiter{\rParen}    {\mathclose}{stixdelims}{"DF}{stixdelims}{"03}
-\DeclareMathDelimiter{\lBrack}    {\mathopen} {stixdelims}{"E0}{stixdelims}{"06}
-\DeclareMathDelimiter{\rBrack}    {\mathclose}{stixdelims}{"E1}{stixdelims}{"07}
-\DeclareMathDelimiter{\lgroup}    {\mathopen} {stixdelims}{"DC}{stixdelims}{"6A}
-\DeclareMathDelimiter{\rgroup}    {\mathclose}{stixdelims}{"DD}{stixdelims}{"6B}
-\DeclareMathSymbol{\parallel}     {\mathrel}  {stixops}   {"DF}
+\DeclareMathDelimiter{\lAngle}     {\mathopen} {stixdelims} {"EC}{stixdelims}{"12}
+\DeclareMathDelimiter{\rAngle}     {\mathclose}{stixdelims} {"ED}{stixdelims}{"13}
+\DeclareMathDelimiter{\lbrbrak}    {\mathopen} {stixdelims} {"EE}{stixdelims}{"14}
+\DeclareMathDelimiter{\rbrbrak}    {\mathclose}{stixdelims} {"EF}{stixdelims}{"15}
+\DeclareMathDelimiter{\lParen}     {\mathopen} {stixdelims} {"DE}{stixdelims}{"02}
+\DeclareMathDelimiter{\rParen}     {\mathclose}{stixdelims} {"DF}{stixdelims}{"03}
+\DeclareMathDelimiter{\lBrack}     {\mathopen} {stixdelims} {"E0}{stixdelims}{"06}
+\DeclareMathDelimiter{\rBrack}     {\mathclose}{stixdelims} {"E1}{stixdelims}{"07}
+\DeclareMathDelimiter{\lgroup}     {\mathopen} {stixdelims} {"DC}{stixdelims}{"6A}
+\DeclareMathDelimiter{\rgroup}     {\mathclose}{stixdelims} {"DD}{stixdelims}{"6B}
+\DeclareMathSymbol{\parallel}      {\mathrel}  {stixops}    {"DF}
+\DeclareMathSymbol{\stixhookrarw}  {\mathrel}  {stixarrows1}{"B1}
+\DeclareMathSymbol{\varstar}       {\mathord}  {stixarrows3}{"85}
+\DeclareMathSymbol{\stixlooparrowleft} {\mathrel}  {stixarrows1}{"B2}
+\DeclareMathSymbol{\stixlooparrowright}{\mathrel}  {stixarrows1}{"B3}
 \makeatother
+
+\newcommand{\predderive}[1]{\msp{4}{\place{1}{1.9}{180}{\hspace{0.75mm}\stixlooparrowleft}^{\hspace{-1.725mm}\place{0.825}{.895}{0}{\hspace{-2.65mm}#1}}}}
+\renewcommand\labelitemi{$\varstar$}
 
 \makeatletter
 \let\parallel@mathchar \parallel
